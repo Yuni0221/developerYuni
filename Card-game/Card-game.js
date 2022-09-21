@@ -8,6 +8,8 @@ let colorCopy = colors.concat(colors);
 let shuffled = [];
 let clicked = [];
 let completed = [];
+let clickable = false;
+
 
 function shuffle() {
     for (let i = 0; colorCopy.length > 0; i += 1) {
@@ -33,6 +35,9 @@ function createCard(i) {
 };
 
 function onClickCard() {
+    if (!clickable || completed.includes(this) || clicked[0] === this) {
+        return;
+    }
     this.classList.toggle('flipped');
     clicked.push(this);
     if (clicked.length !== 2) {
@@ -47,7 +52,11 @@ function onClickCard() {
         if (completed.length !== total) {
             return;
     }
-    alert(`축하합니다!`);
+    setTimeout(() => {
+        alert('축하합니다!');
+        resetGame();
+    }, 1000);
+  
     return;
     }
 
@@ -78,7 +87,16 @@ function startGame() {
         document.querySelectorAll('.card').forEach((card) => {
             card.classList.remove('flipped');
         });
+        clickable = true;
     }, 5000);
 }
 
 startGame();
+
+function resetGame() {
+    $wrapper.innerHTML = '';
+    colorCopy = colors.concat(colors);
+    shuffled = [];
+    completed = [];
+    startGame();
+}
