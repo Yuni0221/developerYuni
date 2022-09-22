@@ -51,21 +51,19 @@ function onClickCard() {
         clicked = [];
         if (completed.length !== total) {
             return;
+        }
+        setTimeout(() => {
+            alert('축하합니다!');
+            resetGame();
+        }, 1000);   
+        return;
     }
-    setTimeout(() => {
-        alert('축하합니다!');
-        resetGame();
-    }, 1000);
-  
-    return;
-    }
-
     setTimeout(() => {
         clicked[0].classList.remove('flipped');
         clicked[1].classList.remove('flipped');
         clicked = [];
-    }, 1000);
-}
+    }, 500);
+};
 
 
 function startGame() {
