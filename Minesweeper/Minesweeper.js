@@ -1,4 +1,5 @@
-const $body = document.querySelector('#table tbody');
+
+const $tbody = document.querySelector('#table tbody');
 const $result = document.querySelector('#result');
 
 const row = 10;
@@ -33,9 +34,20 @@ function plantMine() {
             rowData.push(CODE.NORMAL);
         }
     }
+    
+    for (let k = 0; k < shuffle.length; k++) {
+        const ver = Math.floor(shuffle[k] / cell);
+        const hor = shuffle[k] % cell;
+        data[ver][hor] = CODE.MINE;
+    }
+    return data;
+}
+
+function onRightClick(event) {
 
 }
-function drawTable() /*{
+
+function drawTable() {
     data = plantMine();
     data.forEach((row) => {
         const $tr = document.createElement('tr');
@@ -45,8 +57,9 @@ function drawTable() /*{
                 $td.textContent = 'X'; //개발 편의를 위해
             }
             $tr.append($td);
-        });
+        }); 
         $tbody.append($tr);
-    })
-} */
+    });
+} 
+
 drawTable();
