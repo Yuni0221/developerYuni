@@ -1,4 +1,5 @@
 
+const $timer = document.querySelector('#timer');
 const $tbody = document.querySelector('#table tbody');
 const $result = document.querySelector('#result');
 
@@ -16,6 +17,13 @@ const CODE = {
 }
 
 let data;
+let openCount = 0;
+let startTime = new Date();
+const interval = setInterval(() => {
+    const time = Math.floor((new Date() - startTime) / 1000);
+    $timer.textContent = `${time}`;
+}, 1000);
+
 
 function plantMine() {
     const candidate = Array(row * cell).fill().map((arr, i) => {
@@ -92,6 +100,7 @@ function countMine(rowIndex, cellIndex) {
 }
 
 function open(rowIndex, cellIndex) {
+    if (data[rowIndex]?.[cellIndex] >= CODE.OPENED) return;
     const target = $tbody.children[rowIndex]?.children[cellIndex];
     if (!target) {
         return;
@@ -100,21 +109,34 @@ function open(rowIndex, cellIndex) {
     target.textContent = count || '';
     target.className = 'opened';
     data[rowIndex][cellIndex] = count;
+    openCount++;
+    console.log(openCount);
+    if (openCount === row * cell - mine) {
+        const time = (new Date() - startTime) / 1000;
+        clearInterval(interval);
+        $tbody.removeEventListener('contextmenu', onRightClick);
+        $tbody.removeEventListener('click', onLeftClick);
+        setTimeout(() => {
+            alert(`You Win! ${time}초가 걸렸습니다.`);
+        }, 500);
+    }
     return count;
 }
 
 function openAround(rI, cI) {
-    const count = open(rI, cI);
-    if (count === 0) {
-        openAround(rI - 1, cI - 1);
-        openAround(rI - 1, cI);
-        openAround(rI - 1, cI + 1);
-        openAround(rI, cI - 1);
-        openAround(rI, cI + 1);
-        openAround(rI + 1, cI - 1);
-        openAround(rI + 1, cI);
-        openAround(rI + 1, cI + 1);
-    }
+    setTimeout(() => {
+        const count = open(rI, cI);
+        if (count === 0) {
+            openAround(rI - 1, cI - 1);
+            openAround(rI - 1, cI);
+            openAround(rI - 1, cI + 1);
+            openAround(rI, cI - 1);
+            openAround(rI, cI + 1);
+            openAround(rI + 1, cI - 1);
+            openAround(rI + 1, cI);
+            openAround(rI + 1, cI + 1);
+        }
+    }, 0);
 }
 
 function onLeftClick(event) {
@@ -127,6 +149,7 @@ function onLeftClick(event) {
     } else if (cellData === CODE.MINE) {     
         target.textContent = '펑';
         target.className = 'opened';
+        clearInterval(interval);
         $tbody.removeEventListener('contextmenu', onRightClick);
         $tbody.removeEventListener('click', onLeftClick);  
     }
@@ -139,7 +162,7 @@ function drawTable() {
         row.forEach((cell) => {
             const $td = document.createElement('td');
             if (cell === CODE.MINE) {
-                $td.textContent = 'X'; //개발 편의를 위해
+               // $td.textContent = 'X'; //개발 편의를 위해
             }
             $tr.append($td);
         }); 
