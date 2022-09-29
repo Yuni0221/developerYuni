@@ -31,12 +31,32 @@ document.querySelector('#num-8').addEventListener('click', (onClickNumber));
 document.querySelector('#num-9').addEventListener('click', (onClickNumber));
 
 const onClickOperator = (op) => () => {
+    if (numTwo) {
+        switch (operator) {
+            case '+':
+                $result.value = parseInt(numOne) + parseInt(numTwo);
+                break;
+            case '-':
+                $result.value = numOne - numTwo;
+                break;
+            case '*':
+                $result.value = numOne * numTwo;
+                break;
+            case '/':
+                $result.value = numOne / numTwo;
+                break;
+            default:
+                break;
+        }  
+        numOne = $result.value;
+        numTwo = '';
+    }
     if (numOne) {
         operator = op;
         $operator.value = op;
     } else {
         alert('숫자를 먼저 입력하세요.');
-    }
+    }   
 }
 document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
 document.querySelector('#minus').addEventListener('click', onClickOperator('-'))
@@ -60,6 +80,10 @@ document.querySelector('#calculate').addEventListener('click', () => {
             default:
                 break;
         } 
+        $operator.value = '';
+        numOne = $result.value;
+        operator = '';
+        numTwo = '';
     } else {
         alert('숫자를 먼저 입력하세요.');
     }
