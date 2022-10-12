@@ -29,16 +29,12 @@
 }
 
 @keyframes rotate {
-    50% {
-        transform: rotate(180deg);
-    }
     100% {
         transform: rotate(360deg);
     }
 }
 
 html, body {
-    width: 100%;
     height: 100%;
 }
 
@@ -48,16 +44,8 @@ body {
     color: #FFF;
 }
 
-#contents {
-    display: flex; 
-    justify-content: center;
-}
 
 .wrapper {
-    width: 100%;
-    /*height: 100%;*/
-    display: flex;
-    flex-direction: column;
     margin-top: 50px;
 }
 
@@ -81,7 +69,6 @@ body {
 
 .title_img img {
     width: 100%;
-    height: auto;
 }
 
 .intro {
@@ -150,8 +137,6 @@ body {
 }
 
 button {
-    display: flex; 
-    align-items: center;
     font-family: 'GmarketSansBold';
     font-size: 20px; 
     color: #5B2386; 
