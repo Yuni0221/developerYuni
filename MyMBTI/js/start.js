@@ -15,12 +15,23 @@ function setResult(){
     const resultName = document.querySelector('.resultname');
     resultName.innerHTML = infoList[point].name;
 
-    var resultImg = document.createElement('img');
-    const imgDiv = document.querySelector('#resultImg');
+    // 이미지 태그 생성
+    var uniImage = document.createElement('img');
+
+    // 이미지 주소 변수화
     var imgURL = 'img/image-' + point + '.png';
-    resultImg.src = imgURL;
-    resultImg.alt = point;
-    imgDiv.appendChild(resultImg);
+
+    // 이미지 소스 주입
+    uniImage.src = imgURL;
+
+    // Alt 주입
+    uniImage.alt = point;
+
+    // 클래스 주입
+    uniImage.classList.add('img-fluid');
+
+    const imgDiv = document.querySelector('#resultImg');
+    imgDiv.appendChild(uniImage);
 
     const resultDesc = document.querySelector('.resultDesc');
     resultDesc.innerHTML = infoList[point].desc;
@@ -74,17 +85,18 @@ function addAnswer(answerText, qIdx, idx){
 }
 
 function goNext(qIdx) {
+
     if(qIdx === endPoint) {
-        goResult();
-        return;
-    }
-    var q = document.querySelector('.qBox');
-    q.innerHTML = qnaList[qIdx].q;
-    for(let i in qnaList[qIdx].a) {
-        addAnswer(qnaList[qIdx].a[i].answer, qIdx, i);
-    }
-    var status = document.querySelector('.statusBar');
-    status.style.width = (100/endPoint) * (qIdx+1) + '%';
+         goResult();
+         return;
+     }
+     var q = document.querySelector('.qBox');
+     q.innerHTML = qnaList[qIdx].q;
+     for(let i in qnaList[qIdx].a) {
+         addAnswer(qnaList[qIdx].a[i].answer, qIdx, i);
+     }
+     var status = document.querySelector('.statusBar');
+     status.style.width = (100/endPoint) * (qIdx+1) + '%';
 }
 
 function begin(){
