@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple of 3</title>
+</head>
+<body>
+<style>
+    body {
+        text-align: center;
+    }
+    
+    p {
+        margin-top: 30px;
+        font-weight: bold;
+        color: rgb(17, 0, 201);
+    }
+</style>
+<h2>3의 배수 찾기</h2>
+<script>
+    var count = 0;
+    for (var i = 1; i < 100; i++) {
+        if (i % 3 == 0) {
+            document.write(i + ", ")
+            count = count + 1;
+        }
+    }
+    document.write("<p>3의 배수의 갯수:" + count +"</p>");
+</script>
+</body>
+</html>
