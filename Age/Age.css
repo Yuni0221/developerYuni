@@ -1,0 +1,25 @@
+.button {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    background-color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 150px;
+    height: 30px;
+    border-radius: 25px;
+    border: 1px solid #32AAFF;
+}
+
+.btn:hover{
+    color: white;
+    background-color: #28A0FF;
+    border-color: #28A0FF;
+}
+
+#result {
+    text-align: center;
+    
+}

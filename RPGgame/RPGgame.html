@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEXT-RPG</title>
+    <style>
+    
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,100;1,200&display=swap');
+
+
+    *{font-family: 'Lato', sans-serif;
+    font-family: 'Montserrat', sans-serif;}
+    
+
+        form{
+            margin-left : auto;
+            margin-right: auto;
+            margin-top : 30px;
+            text-align: center;          
+        }
+
+        #hero-stat, #message, #monster-start {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #name-input, #menu-input, #battle-input{
+            width: 150px;
+            height : 30px; 
+            border-radius : 0px;
+        }
+        #start, #menu-button, #battle-button{
+            width: 50px;
+            height: 36px;
+            border-radius : 0px;
+            margin-top: 15px;
+            border-color: gray;
+        }
+
+    </style>
+
+</head>
+<body>
+    <form id="start-screen">
+        <input id="name-input" placeholder="Enter your name!" />
+        <button id="start">Start!</button>
+    </form>
+<div id="screen">
+    <div id="hero-stat">
+        <span id="hero-name"></span>
+        <span id="hero-level"></span>
+        <span id="hero-hp"></span>
+        <span id="hero-xp"></span>
+        <span id="hero-att"></span>
+    </div>
+    <form id="game-menu" style="display: none;">
+       <div id="menu-1">1. 모험</div>
+       <div id="menu-2">2. 휴식</div>
+       <div id="menu-3">3. 종료</div>
+       <input id="menu-input" />
+       <button id="menu-button">입력</button>
+    </form>
+    <form id="battle-menu" style="display: none;">
+        <div id="battle-1">1. 공격</div>
+        <div id="battle-2">2. 회복</div>
+        <div id="battle-3">3. 도망</div>
+        <input id="battle-input" />
+        <button id="battle-button">입력</button>
+    </form>
+    <div id="message"></div>
+    <div id="monster-start">
+        <span id="monster-name"></span>
+        <span id="monster-hp"></span>
+        <span id="monster-att"></span>
+    </div>
+</div>
+<script src="RPGgame-class.js"></script>
+</body>
+</html>

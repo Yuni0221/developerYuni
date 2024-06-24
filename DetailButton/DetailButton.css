@@ -1,0 +1,33 @@
+button {
+    background-color: whitesmoke;
+    border-radius: 10px; 
+    border: 1px solid whitesmoke;
+}
+
+#choco{
+    width: 300px;
+  
+}
+
+#item, #item2{
+    position: relative;
+    width: 200px;
+    height: auto;
+    padding: 15px 20px;    
+
+}
+
+.over {
+    position: absolute;
+    left: 30px;
+    bottom: 30px; 
+}
+
+.detail {
+    width: 300px; 
+    text-align: left;
+
+    display:none;
+}
+
+#cover { border: 5px solid transparent;}
